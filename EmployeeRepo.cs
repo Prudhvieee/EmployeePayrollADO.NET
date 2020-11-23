@@ -133,5 +133,56 @@ namespace EmployeePayrollADO.NET
                 }
             }
         }
+        public List<string> GetEmployeeNameInParticularRange(string dateRangeQuery)
+        {
+            EmployeeModel employeeModel = new EmployeeModel();
+            List<string> data = new List<string>();
+            try
+            {
+                using (this.sqlconnection)
+                {
+                    string query = dateRangeQuery;
+                    SqlCommand command = new SqlCommand(query, sqlconnection);
+                    this.sqlconnection.Open();
+                    SqlDataReader dataReader = command.ExecuteReader();
+                    if (dataReader.HasRows)
+                    {
+                        while (dataReader.Read())
+                        {
+                            employeeModel.id = dataReader.GetInt32(0);
+                            employeeModel.Name = dataReader.GetString(1);
+                            employeeModel.salary = dataReader.GetDecimal(2);
+                            employeeModel.Start_Date = dataReader.GetDateTime(3);
+                            employeeModel.Gender = Convert.ToChar(dataReader.GetString(4));
+                            employeeModel.Employee_Address = dataReader.GetString(5);
+                            employeeModel.Department = dataReader.GetString(6);
+                            employeeModel.Phone_Number = dataReader.GetString(7);
+                            employeeModel.Basic_Pay = dataReader.GetDecimal(8);
+                            employeeModel.Deductions = dataReader.GetDecimal(9);
+                            employeeModel.Taxable_Pay = dataReader.GetDecimal(10);
+                            employeeModel.Income_Tax = dataReader.GetDecimal(11);
+                            employeeModel.NetPay = dataReader.GetDecimal(12);
+                            Console.WriteLine("\n");
+                            data.Add(employeeModel.Name);
+                            Console.WriteLine(employeeModel.Name);
+                        }
+                        dataReader.Close();
+                        return data;
+                    }
+                    else
+                    {
+                        throw new Exception("No data found");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                this.sqlconnection.Close();
+            }
+        }
     }
 }

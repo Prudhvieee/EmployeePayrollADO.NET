@@ -8,7 +8,7 @@ namespace EmployeePayrollADO.NET
         {
             Console.WriteLine("Welcome to employee Payroll DB");
             EmployeeRepo employeeRepo = new EmployeeRepo();
-            Console.WriteLine(employeeRepo.UpdateTables("update employee_payroll set Basic_Pay = 12345678.00 where Id=2"));
+            employeeRepo.GetEmployeeNameInParticularRange("SELECT * FROM Employee_Payroll where Start_Date between CAST('2018-04-21' AS DATE) AND CAST('2020-11-05' AS DATE)");
         }
     }
 }
