@@ -7,6 +7,8 @@ namespace EmployeePayrollADO.NET
         public static void Main(string[] args)
         {
             Console.WriteLine("Welcome to employee Payroll DB");
+            EmployeeRepo employeeRepo = new EmployeeRepo();
+            employeeRepo.GetAllEmployee();
         }
     }
 }
