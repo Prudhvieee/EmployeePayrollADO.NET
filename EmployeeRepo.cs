@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 
@@ -39,9 +40,9 @@ namespace EmployeePayrollADO.NET
                             employeeModel.NetPay = dataReader.GetDecimal(12);
                             Console.WriteLine("\n");
                             Console.WriteLine(employeeModel.id + " " + employeeModel.Name + " " + employeeModel.salary + " " + employeeModel.Start_Date + " " +
-                                employeeModel.Gender+" "+employeeModel.Employee_Address+" "+employeeModel.Department+" "+employeeModel.Phone_Number
-                                +" "+employeeModel.Basic_Pay+" "+employeeModel.Deductions+ " " +employeeModel.Taxable_Pay+" "+employeeModel.Income_Tax
-                                +" "+employeeModel.NetPay);
+                                employeeModel.Gender + " " + employeeModel.Employee_Address + " " + employeeModel.Department + " " + employeeModel.Phone_Number
+                                + " " + employeeModel.Basic_Pay + " " + employeeModel.Deductions + " " + employeeModel.Taxable_Pay + " " + employeeModel.Income_Tax
+                                + " " + employeeModel.NetPay);
                             Console.WriteLine("\n");
                         }
                     }
