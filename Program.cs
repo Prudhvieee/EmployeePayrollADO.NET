@@ -8,7 +8,7 @@ namespace EmployeePayrollADO.NET
         {
             Console.WriteLine("Welcome to employee Payroll DB");
             EmployeeRepo employeeRepo = new EmployeeRepo();
-            employeeRepo.GetAllEmployee();
+            Console.WriteLine(employeeRepo.UpdateTables("update employee_payroll set Basic_Pay = 12345678.00 where Id=2"));
         }
     }
 }

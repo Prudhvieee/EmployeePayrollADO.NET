@@ -63,5 +63,75 @@ namespace EmployeePayrollADO.NET
                 this.sqlconnection.Close();
             }
         }
+        public bool AddEmployee(EmployeeModel employeeModel)
+        {
+            try
+            {
+                using (this.sqlconnection)
+                {
+                    SqlCommand sqlCommand = new SqlCommand("spAddEmployee", this.sqlconnection);
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("@id", employeeModel.id);
+                    sqlCommand.Parameters.AddWithValue("@Name", employeeModel.Name);
+                    sqlCommand.Parameters.AddWithValue("@salary", employeeModel.salary);
+                    sqlCommand.Parameters.AddWithValue("@Start_Date", employeeModel.Start_Date);
+                    sqlCommand.Parameters.AddWithValue("@Gender", employeeModel.Gender);
+                    sqlCommand.Parameters.AddWithValue("@Employee_Address", employeeModel.Employee_Address);
+                    sqlCommand.Parameters.AddWithValue("@Department", employeeModel.Department);
+                    sqlCommand.Parameters.AddWithValue("@Phone_Number", employeeModel.Phone_Number);
+                    sqlCommand.Parameters.AddWithValue("@Basic_Pay", employeeModel.Basic_Pay);
+                    sqlCommand.Parameters.AddWithValue("@Deductions", employeeModel.Deductions);
+                    sqlCommand.Parameters.AddWithValue("@Taxable_Pay", employeeModel.Taxable_Pay);
+                    sqlCommand.Parameters.AddWithValue("@Income_Tax", employeeModel.Income_Tax);
+                    sqlCommand.Parameters.AddWithValue("@NetPay", employeeModel.NetPay);
+                    this.sqlconnection.Open();
+                    var result = sqlCommand.ExecuteNonQuery();
+                    this.sqlconnection.Close();
+                    if (result != 0)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
+            finally
+            {
+                this.sqlconnection.Close();
+            }
+            return false;
+        }
+        public bool UpdateTables(string updateQuery)
+        {
+            using (this.sqlconnection)
+            {
+                try
+                {
+                    this.sqlconnection.Open();
+                    SqlCommand command = this.sqlconnection.CreateCommand();
+                    command.CommandText = updateQuery;
+                    int updatedRows = command.ExecuteNonQuery();
+                    if (updatedRows != 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception exception)
+                {
+                    throw new Exception(exception.Message);
+                }
+                finally
+                {
+                    this.sqlconnection.Close();
+                }
+            }
+        }
     }
 }
