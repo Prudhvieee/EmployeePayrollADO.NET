@@ -8,11 +8,7 @@ namespace EmployeePayrollADO.NET
         {
             Console.WriteLine("Welcome to employee Payroll DB");
             EmployeeRepo employeeRepo = new EmployeeRepo();
-            employeeRepo.SumOfSalaryGenderWise();
-            employeeRepo.AverageOfSalaryGenderWise();
-            employeeRepo.MinimumSalaryGenderWise();
-            employeeRepo.MaximumSalaryGenderWise();
-            employeeRepo.CountOfEmployeesGenderWise();
+            employeeRepo.DeleteValue();
         }
     }
 }

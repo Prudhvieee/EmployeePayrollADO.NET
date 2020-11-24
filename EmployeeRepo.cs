@@ -365,6 +365,35 @@ namespace EmployeePayrollADO.NET
                 this.sqlconnection.Close();
             }
         }
+        public bool DeleteValue()
+        {
+            using (this.sqlconnection)
+            {
+                try
+                {
+                    this.sqlconnection.Open();
+                    SqlCommand command = this.sqlconnection.CreateCommand();
+                    command.CommandText = "delete from employee_payroll where id=3";
+                    int deletedRows = command.ExecuteNonQuery();
+                    if (deletedRows != 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch (Exception exception)
+                {
 
+                    throw new Exception(exception.Message);
+                }
+                finally
+                {
+                    this.sqlconnection.Close();
+                }
+            }
+        }
     }
 }
